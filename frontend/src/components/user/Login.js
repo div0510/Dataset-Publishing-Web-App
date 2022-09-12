@@ -1,6 +1,7 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, Link ,useNavigate } from 'react-router-dom'
 import HeaderWithNav from '../HeaderWithNav'
+import Swal from "sweetalert2";
 import { Formik } from 'formik';
 
 const Login = () => {
@@ -23,10 +24,30 @@ const Login = () => {
             resetForm();
             if(response.status ===200)
             {
-                console.log("Logged In"); // Give swal
+                // console.log("Logged In"); // Give swal
+                Swal.fire(
+                    {
+                        title:"Success",
+                        icon: "success",
+                        text:"Log In Successful",
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: 'green'
+                    }
+                )
             }else if(response.status ===401)
             {
-                console.log("Login Failed");
+                // console.log("Login Failed");
+                Swal.fire(
+                    {
+                        title:"Error",
+                        icon: "error",
+                        text:"Someone Anonymous",
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: 'red',
+                        footer: `<a href='../userregister'>Want to register?</a>`
+
+                    }
+                )
             }else{
                 console.log('error');
             }
@@ -69,11 +90,11 @@ const Login = () => {
                                                             >
                                                                 Sign into your account
                                                             </h5>
-                                                            <div className="form-outline mb-4">
+                                                            <div className="form-outline  mb-4">
                                                                 <input
                                                                     // type="email"
                                                                     id="username"
-                                                                    className="form-control form-control-lg"
+                                                                    className="form-control  form-control-lg"
                                                                     value={values.username}
                                                                     onChange={handleChange}
                                                                 />

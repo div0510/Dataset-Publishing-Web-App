@@ -39,13 +39,14 @@ router.post('/login',(req,res)=>{
         if(result){
             res.status(200).json(result);
         }else{
-            res.status(401).json({status: loginData});
+            res.status(401).json({status: 'Login Failed'});
         }
         // res.json(result);
         
-    }).catch((err) => {
+    })
+    .catch((err) => {
         console.log(err);
-        res.json(err)
+        res.status(500).json(err)
     });
 })
 
