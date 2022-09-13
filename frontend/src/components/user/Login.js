@@ -24,6 +24,8 @@ const Login = () => {
             resetForm();
             if(response.status ===200)
             {
+                const userData = await response.json();
+                sessionStorage.setItem('user', JSON.stringify(userData));
                 // console.log("Logged In"); // Give swal
                 Swal.fire(
                     {

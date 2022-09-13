@@ -2,7 +2,7 @@ const {Schema, model} = require('../connection');
 const userSchema = new Schema({
     name: String,
     username: String,
-    emai: String,
+    email: String,
     password: String,
     occupation:String,
 })
