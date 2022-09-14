@@ -1,8 +1,78 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const AllDataset = () => {
+
+  // const [title, settitle] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [imgUrl, setImgUrl] = useState('')
+  const [dataFromBackend, setDataFromBackend] = useState([])
+  const url = 'http://localhost:5005/';
+
+  const displayAllDatasets = async () => {
+    const response = await fetch('http://localhost:5005/dataset/getall')
+
+    console.log(response.status);
+    const data = await response.json();
+    setDataFromBackend(data);
+    console.log(dataFromBackend.length);
+    // dataFromBackend.forEach((dataset) => {
+    //   settitle(dataset.title);
+    //   setDescription(dataset.description);
+    //   setImgUrl(dataset.file);
+    // })
+
+
+
+  }
+
+  const displayAllDatasetInCard = () => {
+    return dataFromBackend.map( (data) => (
+      <div className="col-md-3">
+      <div className="card">
+      <div className="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img
+          src={url+data.file}
+          className="img-fluid"
+          alt='thumbnail'
+        />
+        <a href="#!">
+          <div
+            className="mask"
+            style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}
+          />
+        </a>
+      </div>
+      <div className="card-body">
+        <h5 className="card-title">{data.title}</h5>
+        <p className="card-text">
+          {data.description}
+        </p>
+        <Link to={"/details/"+data._id} className="btn btn-primary">
+          Read
+        </Link>
+        <a href={url+data.file} target="_blank" className='ml-3'><i class="fas fa-cloud-download-alt fa-lg  "></i></a>
+      </div>
+    </div>
+    </div>
+    ) )
+    
+  }
+
+  useEffect(() => {
+    displayAllDatasets()
+  }, [])
+
+
+
   return (
-    <div>AllDataset</div>
+    <>
+      <div className="container">
+        <div className='row'>
+        {displayAllDatasetInCard()}
+        </div>
+      </div>
+    </>
   )
 }
 

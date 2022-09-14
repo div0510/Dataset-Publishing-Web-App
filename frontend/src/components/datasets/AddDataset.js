@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // const backgroundImage = require('./public/Images/dataset.jpg');
 // https://i.pinimg.com/564x/bc/d7/e0/bcd7e06ccf12bc959b6b7645b711a606.jpg
 import { Formik } from 'formik';
+import toast from 'react-hot-toast';
 // import { NavLink } from 'react-router-dom';
 
 const styles = {
@@ -35,40 +36,39 @@ const AddDataset = () => {
         const fd = new FormData();
         fd.append("myfile", file);
         fetch("http://localhost:5005/util/uploadfile", {
-          method: "POST",
-          body: fd,
+            method: "POST",
+            body: fd,
         }).then((res) => {
-          if (res.status === 200) {
-            // toast.success("Image Uploaded!!", {
-            //   style: {
-            //     borderRadius: "10px",
-            //     background: "#333",
-            //     color: "#fff",
-            //   },
-            // });
-          }
+            console.log(res.status);
+            if (res.status === 200) {
+                toast.success("File Uploaded!!", {
+                    style: {
+                        borderRadius: "10px",
+                        background: "white",
+                        color: "black",
+                    },
+                });
+            }
         });
-      };
+    };
 
     const datasetSubmit = async (datasetData) => {
-            datasetData.file = selFile;
-            console.log(datasetData);
-            const response = await fetch('http://localhost:5005/dataset/add',{
-                method: 'post',
-                data: JSON.stringify(datasetData),
-                headers: {
-                    'Content-Type' : 'application/json'
-                }
-            })
+        datasetData.file = selFile;
+        console.log(datasetData);
+        const response = await fetch('http://localhost:5005/dataset/add', {
+            method: 'post',
+            body: JSON.stringify(datasetData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
 
-            if(response.status ===200)
-            {
-                console.log('Dataset Saved');
-            }
-            else
-            {
-                console.log('try again');
-            }
+        if (response.status === 200) {
+            console.log('Dataset Saved');
+        }
+        else {
+            console.log('try again');
+        }
     }
 
 
@@ -91,41 +91,42 @@ const AddDataset = () => {
                     styles.transparent
                 }>
                     <Formik
-                        initialValues={{title:'',description: '', createdAT: new Date(),createdBy: currentUser._id ,url:''}}
+                        initialValues={{ title: '', description: '', createdAT: new Date(), createdBy: currentUser._id, url: '' }}
                         onSubmit={datasetSubmit}>
-                        {({values, handleSubmit, handleChange})=>{return <form onSubmit={handleSubmit}>
-                            <div className="input-group flex-nowrap mb-4">
-                                <span className="input-group-text" id="addon-wrapping" style={styles.transparent}>
-                                    Title
-                                </span>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Username"
-                                    aria-label="Username"
-                                    aria-describedby="addon-wrapping"
-                                    style={styles.transparent}
-                                    id='title'
-                                    onChange={handleChange}
-                                    value = {values.title}
-                                />
-                            </div>
+                        {({ values, handleSubmit, handleChange }) => {
+                            return <form onSubmit={handleSubmit}>
+                                <div className="input-group flex-nowrap mb-4">
+                                    <span className="input-group-text" id="addon-wrapping" style={styles.transparent}>
+                                        Title
+                                    </span>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Username"
+                                        aria-label="Username"
+                                        aria-describedby="addon-wrapping"
+                                        style={styles.transparent}
+                                        id='title'
+                                        onChange={handleChange}
+                                        value={values.title}
+                                    />
+                                </div>
 
-                            <div className="form-outline border mb-4 border-secondary " style={styles.transparent}>
-                                <label className="input-group-text border-0" style={styles.transparent}>Description</label>
-                                <textarea
-                                    rows="4"
-                                    className="form-control rounded text-break"
-                                    aria-label="With textarea"
-                                    
-                                    style={styles.textarea}
-                                    id= 'description'
-                                    onChange={handleChange}
-                                    value = {values.description}
-                                />
-                            </div>
+                                <div className=" border mb-4 border-secondary " style={styles.transparent}>
+                                    <label className="input-group-text border-0" style={styles.transparent}>Description</label>
+                                    <textarea
+                                        rows="4"
+                                        className="form-control rounded text-break"
+                                        aria-label="With textarea"
 
-                            {/* <div class="input-group p-1 d-flex align-items-center justify-content-center" style={
+                                        style={styles.textarea}
+                                        id='description'
+                                        onChange={handleChange}
+                                        value={values.description}
+                                    />
+                                </div>
+
+                                {/* <div class="input-group p-1 d-flex align-items-center justify-content-center" style={
                                 styles.transparent}>
                                 <label  class="form-label ml-2 px-1 fs-4 fw-normal" style={styles.textarea}>Your Dataset URL</label>
                                 <span class="input-group-text border-0 " id="basic-addon3" style={styles.textarea}>https://example.com/LoggedInUser/
@@ -142,50 +143,51 @@ const AddDataset = () => {
                                     /></span>
                             </div> */}
 
-                            <section className="p-4 d-flex justify-content-center w-100" style={styles.transparent}>
-                                <div className="file-upload-wrapper" style={styles.backgroundWhite} >
-                                    <div className="file-upload">
-                                        <div className="file-upload-message">
-                                            <i className="fas fa-cloud-upload-alt file-upload-cloud-icon" />
-                                            <p className="file-upload-default-message">
-                                                Drag and drop a file here or click to Upload .csv file
-                                            </p>
-                                            <p className="file-upload-main-error" />
-                                        </div>
-                                        <div className="file-upload-mask" />
-                                        <ul className="file-upload-errors" />
-                                        <h3 className='text-center'>OR</h3>
-                                        <input
-                                            type="file"
-                                            onChange={uploadFile}
-                                            style={styles.transparent}
-                                            className="file-upload-input has-multiple"
-                                            
-                                            data-mdb-file-upload="file-upload"
-                                            
-                                            
-                                        />
-                                        <div className="file-upload-previews" />
-                                    </div>
-                                </div>
-                            </section>
+                                <section className="p-4 d-flex justify-content-center w-100" style={styles.transparent}>
+                                    <div className="file-upload-wrapper" style={styles.backgroundWhite} >
+                                        <div className="file-upload">
+                                            <div className="file-upload-message">
+                                                <i className="fas fa-cloud-upload-alt file-upload-cloud-icon" />
+                                                <p className="file-upload-default-message">
+                                                    Drag and drop a file here or click to Upload .csv file
+                                                </p>
+                                                <p className="file-upload-main-error" />
+                                            </div>
+                                            <div className="file-upload-mask" />
+                                            <ul className="file-upload-errors" />
+                                            <h3 className='text-center'>OR</h3>
+                                            <input
+                                                type="file"
+                                                onChange={uploadFile}
+                                                style={styles.transparent}
+                                                className="file-upload-input has-multiple"
 
-                            <div className=' d-flex m-2 justify-content-end'>
-                                <button
-                                    type="submit"
-                                    className="btn btn-outline-info btn-rounded  text-center btn-lg"
-                                    data-mdb-ripple-color="#fff"
-                                    style={{
-                                        backgroundColor: "",
-                                        color: "white",
-                                        borderColor: "white"
-                                    }}
-                                >
-                                    
-                                    Publish <i className="fas fa-table ms-1" />
-                                </button>
-                            </div>
-                        </form>}}
+                                                data-mdb-file-upload="file-upload"
+
+
+                                            />
+                                            <div className="file-upload-previews" />
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <div className=' d-flex m-2 justify-content-end'>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-outline-info btn-rounded  text-center btn-lg"
+                                        data-mdb-ripple-color="#fff"
+                                        style={{
+                                            backgroundColor: "",
+                                            color: "white",
+                                            borderColor: "white"
+                                        }}
+                                    >
+
+                                        Publish <i className="fas fa-table ms-1" />
+                                    </button>
+                                </div>
+                            </form>
+                        }}
 
                     </Formik>
 

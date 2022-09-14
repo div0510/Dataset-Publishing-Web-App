@@ -92,19 +92,20 @@ const Login = () => {
                                                             >
                                                                 Sign into your account
                                                             </h5>
-                                                            <div className="form-outline  mb-4">
+                                                            <div className="  mb-4">
+                                                                <label className="form-label" htmlFor="username">
+                                                                    Email address/UserName
                                                                 <input
-                                                                    // type="email"
+                                                                    type="email"
+                                                                    placeholder='Email address/UserName'
                                                                     id="username"
                                                                     className="form-control  form-control-lg"
                                                                     value={values.username}
                                                                     onChange={handleChange}
-                                                                />
-                                                                <label className="form-label" htmlFor="username">
-                                                                    Email address/UserName
+                                                                    />
                                                                 </label>
                                                             </div>
-                                                            <div className="form-outline mb-4">
+                                                            <div className=" mb-4">
                                                                 <input
                                                                     type="password"
                                                                     id="password"

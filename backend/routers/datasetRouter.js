@@ -1,10 +1,12 @@
 const express = require('express');
+const { Model } = require('mongoose');
 const router = express.Router();
 const datasetModel = require('../models/datasetModel.js');
 
-router.get('/',(req,res)=>{
+router.get('/getall',(req,res)=>{
     datasetModel.find()
     .then((result) => {
+        console.log(result)
         res.json(result);
         console.log('sending all the datasets');
     }).catch((err) => {
@@ -13,6 +15,7 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/add',(req,res)=>{
+    console.log(req.body);
     new datasetModel(req.body).save()
     .then((result) => {
         console.log('Dataset Saved');
@@ -25,12 +28,24 @@ router.post('/add',(req,res)=>{
 router.get('/find/:title',(req,res)=>{
     console.log(req.params.title);
 
-    Model.find({title: req.params.title})
+    datasetModel.find({title: req.params.title})
     .then((result) => {
         console.log(result)
         res.json(result);
     }).catch((err) => {
         console.log(err);
+    });
+})
+
+router.get('/details/:id',(req,res)=>{
+    datasetModel.findById(req.params.id)
+    .then((result) => {
+        if(result.status === 200)
+        res.status(200).json(result)
+        else
+        res.status(401).json('Details not found')
+    }).catch((err) => {
+        res.json(err)
     });
 })
 

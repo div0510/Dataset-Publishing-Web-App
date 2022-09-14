@@ -8,7 +8,7 @@ const Home = () => {
             <h1>Welcome to HOME Screen </h1>
             
             <AddDataset />
-            <AllDataset/>
+            {/* <AllDataset/> */}
         </>
     )
 }

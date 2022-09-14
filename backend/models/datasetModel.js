@@ -8,7 +8,7 @@ const dataSetSchmea  = new Schema({
     file: String,
     thumbnail: String,
     url: String,
-    uploadedBy:{type: Types.ObjectId,   ref: "users"},
+    createdBy:{type: Types.ObjectId,   ref: "users"},
     createdAt: Date
 })
 

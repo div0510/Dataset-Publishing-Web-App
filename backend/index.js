@@ -18,6 +18,8 @@ app.get('/',(req,res)=>{
     res.send('Request at blank /');
 })
 
+app.use(express.static('./static/uploads'));
+
 app.listen(port,()=>{
     console.log(`SERVER STARTED and listening to port ${port}`);
 })
