@@ -8,17 +8,17 @@ import Login from './user/Login';
 
 const HeaderAfterLogin = () => {
 
-    let userState= sessionStorage.getItem('user');
+    let userState = sessionStorage.getItem('user');
 
     const signOut = () => {
         sessionStorage.removeItem('user');
         <Navigate to='/login' replace={true} />
     }
 
-    const logIn = () => { 
+    const logIn = () => {
         // <Navigate to='/login' replace={true}/>
     }
-    
+
 
     return (
         <>
@@ -68,13 +68,14 @@ const HeaderAfterLogin = () => {
                             {/* {loginState 
                             ? <button type="button" className="btn btn-link-outline px-3 me-2">Login</button>
                             : <button type="button" className="btn btn-danger-outline px-3 me-2">Sign Out</button>} */}
-                            {(userState === null ) 
-                            ? <button type="button" onClick={logIn} className="btn btn-outline-link px-3 me-2" data-mdb-ripple-color="dark">Login</button>
-                            : <button type="button" onClick={signOut} className="btn btn-outline-danger px-3 me-2" data-mdb-ripple-color="dark">Sign Out</button>}
+                            {(userState === null)
+                                ? <button type="button" onClick={logIn} className="btn btn-outline-link px-3 me-2" data-mdb-ripple-color="dark">Login</button>
+                                : <button type="button" onClick={signOut} className="btn btn-outline-danger px-3 me-2" data-mdb-ripple-color="dark">Sign Out</button>}
                             <a
                                 className="btn btn-dark px-3"
-                                href="https://github.com/mdbootstrap/mdb-ui-kit"
+                                href="https://github.com/div0510/Dataset-Publishing-Web-App"
                                 role="button"
+                                target="_blank"
                             >
                                 <i className="fab fa-github" />
                             </a>

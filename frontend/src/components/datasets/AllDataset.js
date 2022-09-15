@@ -67,7 +67,7 @@ const AllDataset = () => {
         <Link to={"/details/"+data._id} className="btn btn-primary">
           Read
         </Link>
-        <a href={url+data.file} target="_blank" className='p-3'>Download<i class="fas fa-cloud-download-alt fa-lg  "></i></a>
+        <a href={url+data.file} target="_blank" className='p-3' rel='noreferrer'>Download<i class="fas fa-cloud-download-alt fa-lg  "></i></a>
       </div>
     </div>
     </div>

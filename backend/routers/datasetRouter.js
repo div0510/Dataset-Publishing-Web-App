@@ -1,5 +1,4 @@
 const express = require('express');
-const { Model } = require('mongoose');
 const router = express.Router();
 const datasetModel = require('../models/datasetModel.js');
 
@@ -49,12 +48,16 @@ router.get('/find/:title',(req,res)=>{
 })
 
 router.get('/details/:id',(req,res)=>{
+    console.log(typeof req.params.id)
+
     datasetModel.findById(req.params.id)
     .then((result) => {
-        if(result.status === 200)
-        res.status(200).json(result)
-        else
-        res.status(401).json('Details not found')
+        console.log(result)
+        // if(result.status === 200)
+        // res.status(200).json(result)
+        // else
+        // res.status(401).json('Details not found')
+        res.json(result)
     }).catch((err) => {
         res.json(err)
     });

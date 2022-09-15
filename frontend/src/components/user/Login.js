@@ -1,8 +1,8 @@
 import React from 'react'
-import { NavLink, Link ,useNavigate } from 'react-router-dom'
+import { NavLink,  Navigate } from 'react-router-dom'
 import HeaderWithNav from '../HeaderWithNav'
 import Swal from "sweetalert2";
-import { Formik } from 'formik';
+import { Formik, replace } from 'formik';
 
 const Login = () => {
     // const navigate = useNavigate();
@@ -36,6 +36,7 @@ const Login = () => {
                         confirmButtonColor: 'green'
                     }
                 )
+                // {<Navigate to="/home" replace={true}/>}  
             }else if(response.status ===401)
             {
                 // console.log("Login Failed");

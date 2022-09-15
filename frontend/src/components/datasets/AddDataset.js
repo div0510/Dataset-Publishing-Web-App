@@ -110,11 +110,11 @@ const AddDataset = () => {
 
     return (
         <>
-                <HeaderAfterLogin/>
+            <HeaderAfterLogin/>
             <div className="container d-flex align-items-center justify-content-center my-lg" style={{
                 backgroundImage: "url('./images/dataset.jpg')",
                 backgroundRepeat: 'no-repeat',     
-                backgroundColor: 'transparent',
+                backgroundColor: 'rgba(3,3,3,0.5)',
                 backgroundSize: "cover",
                 borderRadius: "5px",
                 zIndex: -1,
@@ -122,7 +122,7 @@ const AddDataset = () => {
                 minWidth: '80vw',
                 minHeight: '70vh',
                 top: 50,
-                filter: 'blur(1px)',
+                // filter: 'blur(1px)',
             }}>
                 
                 <h2 className='text-center p-2 mx-2' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
