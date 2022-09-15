@@ -8,19 +8,22 @@ import toast from 'react-hot-toast';
 const styles = {
     transparent: {
         backgroundFilter: "blur(6px)",
-        backgroundColor: "rgba(255,255,255,0.2)",
-        color: "white"
+        backgroundColor: "rgba(1,1,1,0.2)",
+        color: "white",
+        zIndex: 2,
+        
     },
     textarea: {
-        backgroundColor: "rgba(255,255,255,0.2)",
+        backgroundColor: "rgba(2,2,2,0.2)",
         // backgroundColor: "rgba(0,0,0,0.4)",
         color: "white",
+        zIndex: 2,
         borderRadius: "5px"
     },
     backgroundWhite: {
         padding: "10px",
         backgroundColor: "rgba(0,0,0,0.4)",
-
+        zIndex: 2,
         borderRadius: "5px"
     }
 }
@@ -29,7 +32,7 @@ const AddDataset = () => {
 
     const [selFile, setSelFile] = useState("");
     const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
-
+    const [thumbnail, setThumbnail] = useState("");
     const uploadFile = (e) => {
         const file = e.target.files[0];
         setSelFile(file.name);
@@ -52,8 +55,34 @@ const AddDataset = () => {
         });
     };
 
+    const uploadThumbnail = (e)=>{
+        const thumbnailFile = e.target.files[0];
+        setThumbnail(thumbnailFile.name);
+        const fd = new FormData();
+        fd.append('thumbnail',thumbnailFile);
+        fetch("http://localhost:5005/util/uploadthumbnail",{
+            method: 'post',
+            body: fd,
+        })
+        .then((result) => {
+            if(result.status===200)
+            {
+                toast.success("Thumbnail Uploaded ", {
+                    style: {
+                        borderRadius: "10px",
+                        background: "white",
+                        color: "black",
+                    },
+                });
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+    
     const datasetSubmit = async (datasetData) => {
         datasetData.file = selFile;
+        datasetData.thumbnail = thumbnail;
         console.log(datasetData);
         const response = await fetch('http://localhost:5005/dataset/add', {
             method: 'post',
@@ -80,16 +109,22 @@ const AddDataset = () => {
 
     return (
         <>
-            <div className="container d-flex align-items-center justify-content-center my-lg" style={{
+            <div className="container d-flex align-items-center justify-content-center my-lg" >
+                <div style={{
                 backgroundImage: "url('./images/dataset.jpg')",
+                backgroundRepeat: 'no-repeat',     
+                backgroundColor: 'transparent',
                 backgroundSize: "cover",
-                backdropFilter: "blur(50px)",
-                borderRadius: "5px"
-            }}>
+                borderRadius: "5px",
+                zIndex: -1,
+                position: 'absolute',
+                minWidth: '80vw',
+                minHeight: '70vh',
+                top: 50,
+                filter: 'blur(1px)',
+            }}></div>
                 <h2 className='text-center p-2 mx-2' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
-                <div className="card p-4 " style={
-                    styles.transparent
-                }>
+                <div className="card p-4 " style={styles.transparent}>
                     <Formik
                         initialValues={{ title: '', description: '', createdAT: new Date(), createdBy: currentUser._id, url: '' }}
                         onSubmit={datasetSubmit}>
@@ -118,7 +153,6 @@ const AddDataset = () => {
                                         rows="4"
                                         className="form-control rounded text-break"
                                         aria-label="With textarea"
-
                                         style={styles.textarea}
                                         id='description'
                                         onChange={handleChange}
@@ -143,33 +177,24 @@ const AddDataset = () => {
                                     /></span>
                             </div> */}
 
-                                <section className="p-4 d-flex justify-content-center w-100" style={styles.transparent}>
-                                    <div className="file-upload-wrapper" style={styles.backgroundWhite} >
-                                        <div className="file-upload">
-                                            <div className="file-upload-message">
-                                                <i className="fas fa-cloud-upload-alt file-upload-cloud-icon" />
-                                                <p className="file-upload-default-message">
-                                                    Drag and drop a file here or click to Upload .csv file
-                                                </p>
-                                                <p className="file-upload-main-error" />
-                                            </div>
-                                            <div className="file-upload-mask" />
-                                            <ul className="file-upload-errors" />
-                                            <h3 className='text-center'>OR</h3>
-                                            <input
-                                                type="file"
-                                                onChange={uploadFile}
-                                                style={styles.transparent}
-                                                className="file-upload-input has-multiple"
+                                <label class="form-label" htmlFor="customFile" style={styles.transparent}>Upload your .csv file <i class="fas fa-cloud-upload-alt    "></i>
+                                <input
+                                    type="file"
+                                    onChange={uploadFile}
+                                    style={styles.transparent}
+                                    className="file-upload-input has-multiple"
+                                    data-mdb-file-upload="file-upload"
+                                    
+                                /></label>
 
-                                                data-mdb-file-upload="file-upload"
-
-
-                                            />
-                                            <div className="file-upload-previews" />
-                                        </div>
-                                    </div>
-                                </section>
+                                <label class="form-label" htmlFor="customFile" style={styles.transparent}>Upload Thumbnail <i class="fas fa-file-image    "></i>
+                                    <input type="file" 
+                                    class="file-upload-input has-multiple" 
+                                    id="customFile"
+                                    onChange={uploadThumbnail}
+                                    style={styles.transparent}
+                                    data-mdb-file-upload="file-upload"
+                                    /></label>
 
                                 <div className=' d-flex m-2 justify-content-end'>
                                     <button

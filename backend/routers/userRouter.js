@@ -51,5 +51,15 @@ router.post('/login',(req,res)=>{
 })
 
 
+router.post('/getdetailofuser',(req,res)=>{
+    console.log(req.body)
+    userModel.findById(req.body)
+    .then((result) => {
+        res.json(result)
+    }).catch((err) => {
+        res.json(err)
+    });
+})
+
 // exporting routes
 module.exports = router;

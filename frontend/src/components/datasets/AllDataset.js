@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
+const styles = {
+  mainContainer: {
+    minHeight: '80vh',
+    alignself: 'center'
+  }
+}
+
 const AllDataset = () => {
 
-  // const [title, settitle] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [imgUrl, setImgUrl] = useState('')
+  const userDetail = sessionStorage.getItem('user')
+  console.log(JSON.parse(userDetail))
   const [dataFromBackend, setDataFromBackend] = useState([])
   const url = 'http://localhost:5005/';
 
   const displayAllDatasets = async () => {
-    const response = await fetch('http://localhost:5005/dataset/getall')
+    const response = await fetch('http://localhost:5005/dataset/userdatasets',{
+      method: 'post',
+      body: userDetail,
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
 
     console.log(response.status);
     const data = await response.json();
+    console.log(data);
     setDataFromBackend(data);
     console.log(dataFromBackend.length);
     // dataFromBackend.forEach((dataset) => {
@@ -28,13 +41,15 @@ const AllDataset = () => {
 
   const displayAllDatasetInCard = () => {
     return dataFromBackend.map( (data) => (
-      <div className="col-md-3">
+      <div className="col-md-3" key={data._id}>
       <div className="card">
       <div className="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
         <img
-          src={url+data.file}
+          src={url+data.thumbnail}
           className="img-fluid"
           alt='thumbnail'
+          // width= "500px"
+          // height= "500px"
         />
         <a href="#!">
           <div
@@ -51,7 +66,7 @@ const AllDataset = () => {
         <Link to={"/details/"+data._id} className="btn btn-primary">
           Read
         </Link>
-        <a href={url+data.file} target="_blank" className='ml-3'><i class="fas fa-cloud-download-alt fa-lg  "></i></a>
+        <a href={url+data.file} target="_blank" className='p-3'>Download<i class="fas fa-cloud-download-alt fa-lg  "></i></a>
       </div>
     </div>
     </div>
@@ -61,13 +76,13 @@ const AllDataset = () => {
 
   useEffect(() => {
     displayAllDatasets()
-  }, [])
+  },[])
 
 
 
   return (
     <>
-      <div className="container">
+      <div className="container " style={styles.mainContainer}>
         <div className='row'>
         {displayAllDatasetInCard()}
         </div>

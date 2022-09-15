@@ -14,6 +14,17 @@ router.get('/getall',(req,res)=>{
     });
 })
 
+router.post('/userdatasets',(req,res)=>{
+    console.log(req.body._id);
+    datasetModel.find({createdBy: req.body._id})
+    .then((result) => {
+        console.log(result)
+        res.json(result);
+    }).catch((err) => {
+        console.log(err);
+    });
+})
+
 router.post('/add',(req,res)=>{
     console.log(req.body);
     new datasetModel(req.body).save()

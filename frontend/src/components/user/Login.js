@@ -96,7 +96,7 @@ const Login = () => {
                                                                 <label className="form-label" htmlFor="username">
                                                                     Email address/UserName
                                                                 <input
-                                                                    type="email"
+                                                                    // type="email"
                                                                     placeholder='Email address/UserName'
                                                                     id="username"
                                                                     className="form-control  form-control-lg"
