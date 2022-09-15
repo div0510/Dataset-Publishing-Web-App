@@ -9,6 +9,7 @@ import AllDataset from './components/datasets/AllDataset';
 import { Toaster } from 'react-hot-toast';
 import DatasetManager from './components/datasets/DatasetManager';
 import DatasetDetails from './components/datasets/DatasetDetails';
+import AddDataset from './components/datasets/AddDataset';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route element={<Login/>} path="login" />
         <Route element={<Register/>} path="userregister"/>
         <Route element={<Home/>} path='home' />
+        <Route element={<AddDataset/> } path='adddataset'/>
         <Route element={<AllDataset/>} path='dataset' />
         <Route element={<DatasetManager/> } path='datasetmanager'/>
         <Route element={<DatasetDetails/> } path='details/:id'/>

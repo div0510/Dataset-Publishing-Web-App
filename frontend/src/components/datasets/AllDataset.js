@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import HeaderAfterLogin from '../HeaderAfterLogin';
 
 const styles = {
   mainContainer: {
@@ -82,6 +83,7 @@ const AllDataset = () => {
 
   return (
     <>
+      <HeaderAfterLogin/>
       <div className="container " style={styles.mainContainer}>
         <div className='row'>
         {displayAllDatasetInCard()}

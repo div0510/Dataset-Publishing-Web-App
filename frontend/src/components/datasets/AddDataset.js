@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // https://i.pinimg.com/564x/bc/d7/e0/bcd7e06ccf12bc959b6b7645b711a606.jpg
 import { Formik } from 'formik';
 import toast from 'react-hot-toast';
+import HeaderAfterLogin from '../HeaderAfterLogin';
 // import { NavLink } from 'react-router-dom';
 
 const styles = {
@@ -79,7 +80,7 @@ const AddDataset = () => {
             console.log(err);
         });
     }
-    
+
     const datasetSubmit = async (datasetData) => {
         datasetData.file = selFile;
         datasetData.thumbnail = thumbnail;
@@ -109,8 +110,8 @@ const AddDataset = () => {
 
     return (
         <>
-            <div className="container d-flex align-items-center justify-content-center my-lg" >
-                <div style={{
+                <HeaderAfterLogin/>
+            <div className="container d-flex align-items-center justify-content-center my-lg" style={{
                 backgroundImage: "url('./images/dataset.jpg')",
                 backgroundRepeat: 'no-repeat',     
                 backgroundColor: 'transparent',
@@ -122,7 +123,8 @@ const AddDataset = () => {
                 minHeight: '70vh',
                 top: 50,
                 filter: 'blur(1px)',
-            }}></div>
+            }}>
+                
                 <h2 className='text-center p-2 mx-2' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
                 <div className="card p-4 " style={styles.transparent}>
                     <Formik
@@ -178,23 +180,23 @@ const AddDataset = () => {
                             </div> */}
 
                                 <label class="form-label" htmlFor="customFile" style={styles.transparent}>Upload your .csv file <i class="fas fa-cloud-upload-alt    "></i>
-                                <input
+                                </label><input
                                     type="file"
                                     onChange={uploadFile}
                                     style={styles.transparent}
                                     className="file-upload-input has-multiple"
                                     data-mdb-file-upload="file-upload"
                                     
-                                /></label>
+                                />
 
                                 <label class="form-label" htmlFor="customFile" style={styles.transparent}>Upload Thumbnail <i class="fas fa-file-image    "></i>
-                                    <input type="file" 
+                                </label><input type="file" 
                                     class="file-upload-input has-multiple" 
                                     id="customFile"
                                     onChange={uploadThumbnail}
                                     style={styles.transparent}
                                     data-mdb-file-upload="file-upload"
-                                    /></label>
+                                    />
 
                                 <div className=' d-flex m-2 justify-content-end'>
                                     <button
