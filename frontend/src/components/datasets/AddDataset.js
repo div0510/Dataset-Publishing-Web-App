@@ -9,13 +9,13 @@ import HeaderAfterLogin from '../HeaderAfterLogin';
 const styles = {
     transparent: {
         backgroundFilter: "blur(6px)",
-        backgroundColor: "rgba(1,1,1,0.2)",
+        backgroundColor: "rgba(1,1,1,0.5)",
         color: "white",
         zIndex: 2,
         
     },
     textarea: {
-        backgroundColor: "rgba(2,2,2,0.2)",
+        backgroundColor: "rgba(2,2,2,0.5)",
         // backgroundColor: "rgba(0,0,0,0.4)",
         color: "white",
         zIndex: 2,
@@ -23,7 +23,7 @@ const styles = {
     },
     backgroundWhite: {
         padding: "10px",
-        backgroundColor: "rgba(0,0,0,0.4)",
+        backgroundColor: "rgba(0,0,0,0.1)",
         zIndex: 2,
         borderRadius: "5px"
     }
@@ -111,21 +111,26 @@ const AddDataset = () => {
     return (
         <>
             <HeaderAfterLogin/>
-            <div className="container d-flex align-items-center justify-content-center my-lg" style={{
-                backgroundImage: "url('./images/dataset.jpg')",
+            <div className="container d-flex align-items-center  justify-content-center my-lg" style={{
+                backgroundImage: "url('./images/ADDsETS.jpg')",
                 backgroundRepeat: 'no-repeat',     
-                backgroundColor: 'rgba(3,3,3,0.5)',
+                backgroundColor: 'rgba(0,0,0,0.1)',
                 backgroundSize: "cover",
                 borderRadius: "5px",
                 zIndex: -1,
-                position: 'absolute',
-                minWidth: '80vw',
+                // margin: 'auto',
+                padding: '5vh',
+                marginInline: '5vh',
+                marginBlock: '10vh',
+                width: '100%',
+                // position: 'absolute',
+                // minWidth: '80vw',
                 minHeight: '70vh',
-                top: 50,
+                // top: 50,
                 // filter: 'blur(1px)',
             }}>
                 
-                <h2 className='text-center p-2 mx-2' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
+                <h2 className='text-center p-2 mx-5' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
                 <div className="card p-4 " style={styles.transparent}>
                     <Formik
                         initialValues={{ title: '', description: '', createdAT: new Date(), createdBy: currentUser._id, url: '' }}
@@ -179,7 +184,7 @@ const AddDataset = () => {
                                     /></span>
                             </div> */}
 
-                                <label class="form-label" htmlFor="customFile" style={styles.transparent}>Upload your .csv file <i class="fas fa-cloud-upload-alt    "></i>
+                                <label className="form-label  mx-3" htmlFor="customFile" style={styles.transparent}>Upload your .csv file <i class="fas fa-cloud-upload-alt    "></i>
                                 </label><input
                                     type="file"
                                     onChange={uploadFile}
@@ -188,8 +193,8 @@ const AddDataset = () => {
                                     data-mdb-file-upload="file-upload"
                                     
                                 />
-
-                                <label class="form-label" htmlFor="customFile" style={styles.transparent}>Upload Thumbnail <i class="fas fa-file-image    "></i>
+                                <br />  
+                                <label className="form-label mx-3 my-4" htmlFor="customFile" style={styles.transparent}>Upload Thumbnail <i class="fas fa-file-image    "></i>
                                 </label><input type="file" 
                                     class="file-upload-input has-multiple" 
                                     id="customFile"

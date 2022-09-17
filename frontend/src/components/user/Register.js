@@ -41,7 +41,10 @@ const Register = () => {
                                         </h2>
                                         <Formik initialValues={{username:'',email:'',password: ''}} onSubmit={resiterSubmit}>
                                             {({values, handleSubmit, handleChange})=>{return <form onSubmit={handleSubmit}>
-                                            <div className="form-outline mb-4">
+                                            <div className="mb-4">
+                                                <label className="form-label" htmlFor="form3Example1cg">
+                                                    UserName
+                                                </label>
                                                 <input
                                                     type="text"
                                                     id="username"
@@ -49,11 +52,11 @@ const Register = () => {
                                                     onChange={handleChange}
                                                     className="form-control form-control-lg"
                                                 />
-                                                <label className="form-label" htmlFor="form3Example1cg">
-                                                    UserName
-                                                </label>
                                             </div>
-                                            <div className="form-outline mb-4">
+                                            <div className="form-label mb-4">
+                                                <label className="form-label" htmlFor="form3Example3cg">
+                                                    Your Email
+                                                </label>
                                                 <input
                                                     type="email"
                                                     id="email"
@@ -61,11 +64,11 @@ const Register = () => {
                                                     onChange={handleChange}
                                                     className="form-control form-control-lg"
                                                 />
-                                                <label className="form-label" htmlFor="form3Example3cg">
-                                                    Your Email
-                                                </label>
                                             </div>
-                                            <div className="form-outline mb-4">
+                                            <div className="form-label mb-4">
+                                                <label className="form-label" htmlFor="form3Example4cg">
+                                                    Password
+                                                </label>
                                                 <input
                                                     type="password"
                                                     id="password"
@@ -73,19 +76,16 @@ const Register = () => {
                                                     onChange={handleChange}
                                                     className="form-control form-control-lg"
                                                 />
-                                                <label className="form-label" htmlFor="form3Example4cg">
-                                                    Password
-                                                </label>
                                             </div>
-                                            <div className="form-outline mb-4">
+                                            <div className="form-label mb-4">
+                                                <label className="form-label" htmlFor="form3Example4cdg">
+                                                    Repeat your password
+                                                </label>
                                                 <input
                                                     type="password"
                                                     id="form3Example4cdg"
                                                     className="form-control form-control-lg"
                                                 />
-                                                <label className="form-label" htmlFor="form3Example4cdg">
-                                                    Repeat your password
-                                                </label>
                                             </div>
                                             <div className="form-check d-flex justify-content-center mb-5">
                                                 <input

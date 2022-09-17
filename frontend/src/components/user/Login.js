@@ -1,13 +1,13 @@
 import React from 'react'
-import { NavLink,  Navigate } from 'react-router-dom'
+import { NavLink,  Navigate, useNavigate } from 'react-router-dom'
 import HeaderWithNav from '../HeaderWithNav'
 import Swal from "sweetalert2";
 import { Formik, replace } from 'formik';
 
 const Login = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // navigate('/adddataset')
+    
 
     const loginSubmit = async (logindata, { resetForm })=>{
             console.log(logindata);
@@ -36,6 +36,7 @@ const Login = () => {
                         confirmButtonColor: 'green'
                     }
                 )
+                navigate('/home')
                 // {<Navigate to="/home" replace={true}/>}  
             }else if(response.status ===401)
             {
@@ -62,18 +63,19 @@ const Login = () => {
         <HeaderWithNav />
         <div className="conteiner">
             <div className="card">
-                <section className="vh-80" style={{ backgroundColor: "#9A616D" }}>
+                <section className="vh-80" style={{ backgroundColor: "#e7f5e6" }}>
                     <div className="container py-5 h-100">
                         <div className="row d-flex justify-content-center align-items-center h-100">
                             <div className="col col-xl-10">
                                 <div className="card" style={{ borderRadius: "1rem" }}>
                                     <div className="row g-0">
-                                        <div className="col-md-6 col-lg-5 d-none d-md-block">
+                                        <div className="col-md-6 col-lg-5 d-flex align-items-center ">
                                             <img
-                                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                                src="../Images/login2.svg"
                                                 alt="login form"
                                                 className="img-fluid"
-                                                style={{ borderRadius: "1rem 0 0 1rem" }}
+
+                                                style={{ borderRadius: "1rem 0 0 1rem", padding: 10,  }}
                                             />
                                         </div>
                                         <div className="col-md-6 col-lg-7 d-flex align-items-center">
@@ -85,28 +87,31 @@ const Login = () => {
                                                                     className="fas fa-cubes fa-2x me-3"
                                                                     style={{ color: "#ff6219" }}
                                                                 />
-                                                                <span className="h1 fw-bold mb-0">DataSets</span>
+                                                                <span className="h1 fw-bold mb-0">DATUM</span>
                                                             </div>
                                                             <h5
                                                                 className="fw-normal mb-3 pb-3"
                                                                 style={{ letterSpacing: 1 }}
                                                             >
-                                                                Sign into your account
+                                                                Login to your account
                                                             </h5>
                                                             <div className="  mb-4">
                                                                 <label className="form-label" htmlFor="username">
                                                                     Email address/UserName
-                                                                <input
+                                                                    </label><input
                                                                     // type="email"
-                                                                    placeholder='Email address/UserName'
+                                                                    // placeholder='Email address/UserName'
                                                                     id="username"
                                                                     className="form-control  form-control-lg"
                                                                     value={values.username}
                                                                     onChange={handleChange}
                                                                     />
-                                                                </label>
+                                                                
                                                             </div>
                                                             <div className=" mb-4">
+                                                                <label className="form-label" htmlFor="password">
+                                                                    Password
+                                                                </label>
                                                                 <input
                                                                     type="password"
                                                                     id="password"
@@ -114,9 +119,6 @@ const Login = () => {
                                                                     onChange={handleChange}
                                                                     value={values.password}
                                                                 />
-                                                                <label className="form-label" htmlFor="password">
-                                                                    Password
-                                                                </label>
                                                             </div>
                                                             <div className="pt-1 mb-4">
                                                                 <button

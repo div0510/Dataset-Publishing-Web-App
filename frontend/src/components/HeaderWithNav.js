@@ -19,7 +19,18 @@ const HeaderWithNav = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarExample01">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item active">
+                        <a className="navbar-brand me-2" target="_blank" href="https://github.com/div0510/Dataset-Publishing-Web-App">
+                            <img
+                                src="../Images/lgo.png"
+                                height={50}
+                                alt="Datum"
+                                loading="lazy"
+                                // sizes='cover'
+                                style={{ marginTop: "-1px" }}
+                            />
+                        </a>
+
+                        {/* <li className="nav-item active">
                             <a className="nav-link" aria-current="page" href="#">
                                 Home
                             </a>
@@ -38,7 +49,7 @@ const HeaderWithNav = () => {
                             <a className="nav-link" href="#">
                                 About
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                     <div className="d-flex align-items-center">
                         <button type="button" className="btn btn-link px-3 me-2">
@@ -67,17 +78,17 @@ const HeaderWithNav = () => {
             className="p-5 text-center bg-image"
             style={{
                 backgroundImage:
-                    'url("https://mdbcdn.b-cdn.net/img/new/slides/061.webp")',
+                    'url("Images/header.jpg")',
                 height: 400
             }}
         >
-            <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.7)" }}>
+            <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
                 <div className="d-flex justify-content-center align-items-center h-100">
                     <div className="text-white">
-                        <h1 className="mb-3">DataSets</h1>
+                        <h1 className="mb-3">DATUM</h1>
                         <h4 className="mb-3">Let Play with It</h4>
                         <a className="btn btn-outline-light btn-lg" href="#!" role="button">
-                            <i class="fas fa-plus    "></i> New Dataset
+                            <i class="fas fa-plus"></i> New Dataset
                         </a>
                     </div>
                 </div>

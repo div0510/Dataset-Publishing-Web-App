@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navigate, NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import Login from './user/Login';
 
 
@@ -8,11 +8,13 @@ import Login from './user/Login';
 
 const HeaderAfterLogin = () => {
 
+    const navigate = useNavigate();
+
     let userState = sessionStorage.getItem('user');
 
     const signOut = () => {
         sessionStorage.removeItem('user');
-        <Navigate to='/login' replace={true} />
+        navigate('/login')
     }
 
     const logIn = () => {
@@ -27,12 +29,13 @@ const HeaderAfterLogin = () => {
                 {/* Container wrapper */}
                 <div className="container">
                     {/* Navbar brand */}
-                    <a className="navbar-brand me-2" href="https://mdbgo.com/">
+                    <a className="navbar-brand me-2" target="_blank" href="https://github.com/div0510/Dataset-Publishing-Web-App">
                         <img
-                            src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-                            height={16}
-                            alt="MDB Logo"
+                            src="../Images/lgo.png"
+                            height={50}
+                            alt="Datum"
                             loading="lazy"
+                            // sizes='cover'
                             style={{ marginTop: "-1px" }}
                         />
                     </a>
@@ -70,7 +73,7 @@ const HeaderAfterLogin = () => {
                             : <button type="button" className="btn btn-danger-outline px-3 me-2">Sign Out</button>} */}
                             {(userState === null)
                                 ? <button type="button" onClick={logIn} className="btn btn-outline-link px-3 me-2" data-mdb-ripple-color="dark">Login</button>
-                                : <button type="button" onClick={signOut} className="btn btn-outline-danger px-3 me-2" data-mdb-ripple-color="dark">Sign Out</button>}
+                                : <button type="button" onClick={signOut} className="btn btn-outline-danger px-3 me-4" data-mdb-ripple-color="dark">Sign Out</button>}
                             <a
                                 className="btn btn-dark px-3"
                                 href="https://github.com/div0510/Dataset-Publishing-Web-App"
