@@ -6,7 +6,7 @@ import HeaderAfterLogin from '../HeaderAfterLogin'
 const Home = () => {
     return (
         <>
-            <h1>Welcome to HOME Screen </h1>
+            {/* <h1>Welcome to HOME Screen </h1> */}
             {/* <HeaderAfterLogin/> */}
             
             {/* <AddDataset /> */}

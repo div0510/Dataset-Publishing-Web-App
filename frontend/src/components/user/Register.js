@@ -1,9 +1,12 @@
 import { Formik } from 'formik'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import HeaderWithNav from '../HeaderWithNav'
 
 const Register = () => {
+
+    const navigate = useNavigate()
 
     const resiterSubmit =async (registerData,{resetForm})=>{
         console.log(registerData);
@@ -15,6 +18,27 @@ const Register = () => {
             }
         })
         console.log(response.status);
+        if(response.status === 200)
+        {
+            Swal.fire({
+                title:"Success",
+                icon: "success",
+                text:"Register Successful",
+                confirmButtonText: 'OK',
+                confirmButtonColor: 'green'
+
+            })
+            navigate('/login');
+        }
+        else{
+            Swal.fire({
+                title:"Error",
+                icon: "error",
+                text:"Register Failed",
+                confirmButtonText: 'OK',
+                confirmButtonColor: 'red'
+            })
+        }
         resetForm();
 
 
@@ -27,15 +51,17 @@ const Register = () => {
                 className="vh-100 bg-image"
                 style={{
                     backgroundImage:
-                        'url("https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp")'
+                        'url("Images/registerPage.jpg")',
+                        
+
                 }}
             >
                 <div className="mask d-flex align-items-center h-100 gradient-custom-3">
                     <div className="container h-100">
                         <div className="row d-flex justify-content-center align-items-center h-100">
                             <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-                                <div className="card" style={{ borderRadius: 15 }}>
-                                    <div className="card-body p-5">
+                                <div className="card m-3 " style={{ borderRadius: 15, height: '80vh' }}>
+                                    <div className="card-body  " style={{overflow: 'auto'}}>
                                         <h2 className="text-uppercase text-center mb-5">
                                             Create an account
                                         </h2>

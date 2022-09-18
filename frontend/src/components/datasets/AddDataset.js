@@ -8,11 +8,17 @@ import HeaderAfterLogin from '../HeaderAfterLogin';
 
 const styles = {
     transparent: {
-        backgroundFilter: "blur(6px)",
-        backgroundColor: "rgba(1,1,1,0.5)",
+        // filter: "blur(6px)",
+        backgroundColor: "rgba(1,1,1,0.2)",
         color: "white",
         zIndex: 2,
-        
+
+    },
+    cardbg: {
+        filter: 'drop-shadow(2px 4px 6px black)',
+        backgroundColor: 'rgba(1, 1, 1, 0.5)',
+        color: 'white',
+        zIndex: 2,
     },
     textarea: {
         backgroundColor: "rgba(2,2,2,0.5)",
@@ -56,29 +62,28 @@ const AddDataset = () => {
         });
     };
 
-    const uploadThumbnail = (e)=>{
+    const uploadThumbnail = (e) => {
         const thumbnailFile = e.target.files[0];
         setThumbnail(thumbnailFile.name);
         const fd = new FormData();
-        fd.append('thumbnail',thumbnailFile);
-        fetch("http://localhost:5005/util/uploadthumbnail",{
+        fd.append('thumbnail', thumbnailFile);
+        fetch("http://localhost:5005/util/uploadthumbnail", {
             method: 'post',
             body: fd,
         })
-        .then((result) => {
-            if(result.status===200)
-            {
-                toast.success("Thumbnail Uploaded ", {
-                    style: {
-                        borderRadius: "10px",
-                        background: "white",
-                        color: "black",
-                    },
-                });
-            }
-        }).catch((err) => {
-            console.log(err);
-        });
+            .then((result) => {
+                if (result.status === 200) {
+                    toast.success("Thumbnail Uploaded ", {
+                        style: {
+                            borderRadius: "10px",
+                            background: "white",
+                            color: "black",
+                        },
+                    });
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
     }
 
     const datasetSubmit = async (datasetData) => {
@@ -110,10 +115,10 @@ const AddDataset = () => {
 
     return (
         <>
-            <HeaderAfterLogin/>
+            <HeaderAfterLogin />
             <div className="container d-flex align-items-center  justify-content-center my-lg" style={{
                 backgroundImage: "url('./images/ADDsETS.jpg')",
-                backgroundRepeat: 'no-repeat',     
+                backgroundRepeat: 'no-repeat',
                 backgroundColor: 'rgba(0,0,0,0.1)',
                 backgroundSize: "cover",
                 borderRadius: "5px",
@@ -129,9 +134,9 @@ const AddDataset = () => {
                 // top: 50,
                 // filter: 'blur(1px)',
             }}>
-                
+
                 <h2 className='text-center p-2 mx-5' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
-                <div className="card p-4 " style={styles.transparent}>
+                <div className="card p-4 " style={styles.cardbg}>
                     <Formik
                         initialValues={{ title: '', description: '', createdAT: new Date(), createdBy: currentUser._id, url: '' }}
                         onSubmit={datasetSubmit}>
@@ -191,17 +196,17 @@ const AddDataset = () => {
                                     style={styles.transparent}
                                     className="file-upload-input has-multiple"
                                     data-mdb-file-upload="file-upload"
-                                    
+
                                 />
-                                <br />  
-                                <label className="form-label mx-3 my-4" htmlFor="customFile" style={styles.transparent}>Upload Thumbnail <i class="fas fa-file-image    "></i>
-                                </label><input type="file" 
-                                    class="file-upload-input has-multiple" 
+                                <br />
+                                <label className="form-label mx-3 m-2" htmlFor="customFile" style={styles.transparent}>Upload Thumbnail <i class="fas fa-file-image    "></i>
+                                </label><input type="file"
+                                    class="file-upload-input has-multiple"
                                     id="customFile"
                                     onChange={uploadThumbnail}
                                     style={styles.transparent}
                                     data-mdb-file-upload="file-upload"
-                                    />
+                                />
 
                                 <div className=' d-flex m-2 justify-content-end'>
                                     <button

@@ -10,6 +10,7 @@ import { Toaster } from 'react-hot-toast';
 import DatasetManager from './components/datasets/DatasetManager';
 import DatasetDetails from './components/datasets/DatasetDetails';
 import AddDataset from './components/datasets/AddDataset';
+import DatumWithAddBtn from './components/screens/DatumWithAddBtn';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <BrowserRouter>
     <Toaster position='top-center' />
       <Routes>
-        <Route element={<HeaderWithNav/>} path='/' />
+        <Route element={ <> <HeaderWithNav/> <DatumWithAddBtn/> </>} path='/' />
         <Route element={<Login/>} path="login" />
         <Route element={<Register/>} path="userregister"/>
         <Route element={<Home/>} path='home' />

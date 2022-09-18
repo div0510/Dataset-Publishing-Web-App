@@ -52,14 +52,15 @@ const HeaderWithNav = () => {
                         </li> */}
                     </ul>
                     <div className="d-flex align-items-center">
-                        <button type="button" className="btn btn-link px-3 me-2">
-                            <NavLink to='../login'>
+                        <NavLink to='../login'>
+                            <button type="button" className="btn btn-link px-3 me-2">
                                 Login
-                            </NavLink>
-                        </button>
-                        <button type="button" className="btn btn-outline-info me-3">
-                            <NavLink to='../userregister' className="text-primary" >Register</NavLink>
-                        </button>
+                            </button>
+                        </NavLink>
+                        <NavLink to='../userregister' className="text-primary" >
+                            <button type="button" className="btn btn-outline-info me-3">
+                                Register
+                            </button></NavLink>
                         <a
                             className="btn btn-dark px-3"
                             href="https://github.com/mdbootstrap/mdb-ui-kit"
@@ -74,26 +75,7 @@ const HeaderWithNav = () => {
         </nav>
         {/* Navbar */}
         {/* Background image */}
-        <div
-            className="p-5 text-center bg-image"
-            style={{
-                backgroundImage:
-                    'url("Images/header.jpg")',
-                height: 400
-            }}
-        >
-            <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
-                <div className="d-flex justify-content-center align-items-center h-100">
-                    <div className="text-white">
-                        <h1 className="mb-3">DATUM</h1>
-                        <h4 className="mb-3">Let Play with It</h4>
-                        <a className="btn btn-outline-light btn-lg" href="#!" role="button">
-                            <i class="fas fa-plus"></i> New Dataset
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         {/* Background image */}
     </header>
 
