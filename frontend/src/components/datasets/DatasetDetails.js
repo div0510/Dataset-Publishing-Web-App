@@ -11,7 +11,7 @@ const styles = {
         left: '50%',
         color: 'rgb(255,255,255)',
         backgroundColor: 'rgba(1,1,1,0.5)',
-        minWidth: '100vh',
+        minWidth: '90%',
         padding: '1rem',
         fontSize: '3rem',
         transform: 'translate(-50%, -50%)',

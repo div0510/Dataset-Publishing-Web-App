@@ -45,7 +45,7 @@ const AllDataset = () => {
   const displayAllDatasetInCard = () => {
     return dataFromBackend.map( (data) => (
       <div className="col-md-3 m-3" key={data._id}>
-      <div className="card text-center">
+      <div className="card ">
       <div className="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
         <img
           src={url+data.thumbnail}
@@ -64,6 +64,12 @@ const AllDataset = () => {
       </div>
       <div className="card-body ">
         <h5 className="card-title ">{data.title}</h5>
+        <p className="card-text ">
+          {data.tags}
+        </p>
+        <p className="card-text ">
+          {new Date(data.createdAt).toLocaleDateString()}
+        </p>
         <p className="card-text ">
           {data.description}
         </p>

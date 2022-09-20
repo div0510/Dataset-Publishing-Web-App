@@ -4,24 +4,27 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 import toast from 'react-hot-toast';
 import HeaderAfterLogin from '../HeaderAfterLogin';
+import { Autocomplete, Chip, TextField } from '@mui/material';
 // import { NavLink } from 'react-router-dom';
 
 const styles = {
     transparent: {
         // filter: "blur(6px)",
-        backgroundColor: "rgba(1,1,1,0.2)",
+        backgroundColor: "rgba(255,255,255,0.15)",
         color: "white",
         zIndex: 2,
+        
 
     },
     cardbg: {
-        filter: 'drop-shadow(2px 4px 6px black)',
-        backgroundColor: 'rgba(1, 1, 1, 0.5)',
+        // filter: 'drop-shadow(2px 4px 6px black)',
+        
+        backgroundColor: 'rgba(57, 61, 56, 0.5)',
         color: 'white',
         zIndex: 2,
     },
     textarea: {
-        backgroundColor: "rgba(2,2,2,0.5)",
+        backgroundColor: 'rgba(57, 61, 56, 0.5)',
         // backgroundColor: "rgba(0,0,0,0.4)",
         color: "white",
         zIndex: 2,
@@ -116,11 +119,11 @@ const AddDataset = () => {
     return (
         <>
             <HeaderAfterLogin />
-            <div className="container d-flex align-items-center  justify-content-center my-lg" style={{
-                backgroundImage: "url('./images/ADDsETS.jpg')",
+            <div className="container d-flex align-items-start  justify-content-center my-lg" style={{
+                backgroundImage: "url('./images/bgadd2.jpg')",
                 backgroundRepeat: 'no-repeat',
-                backgroundColor: 'rgba(0,0,0,0.1)',
-                backgroundSize: "cover",
+                backgroundColor: 'rgba(255,255,255,0.15)',
+                backgroundSize: '100% 100%',
                 borderRadius: "5px",
                 zIndex: -1,
                 // margin: 'auto',
@@ -138,7 +141,7 @@ const AddDataset = () => {
                 <h2 className='text-center p-2 mx-5' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
                 <div className="card p-4 " style={styles.cardbg}>
                     <Formik
-                        initialValues={{ title: '', description: '', createdAT: new Date(), createdBy: currentUser._id, url: '' }}
+                        initialValues={{ title: '', description: '', createdAt: new Date(), createdBy: currentUser._id, url: '', tags: ['covid'] }}
                         onSubmit={datasetSubmit}>
                         {({ values, handleSubmit, handleChange }) => {
                             return <form onSubmit={handleSubmit}>
@@ -188,6 +191,27 @@ const AddDataset = () => {
 
                                     /></span>
                             </div> */}
+
+                                <Autocomplete
+                                    multiple
+                                    id="tags"
+                                    options={[].map((option) => option)}
+                                    defaultValue={[]}
+                                    onChange={handleChange}
+                                    renderTags={(value, getTagProps) =>
+                                        value.map((option, index) => (
+                                            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                                        ))
+                                    }
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            variant="filled"
+                                            label="freeSolo"
+                                            placeholder="Favorites"
+                                        />
+                                    )}
+                                />
 
                                 <label className="form-label  mx-3" htmlFor="customFile" style={styles.transparent}>Upload your .csv file <i class="fas fa-cloud-upload-alt    "></i>
                                 </label><input

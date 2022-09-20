@@ -19,7 +19,8 @@ const HeaderWithNav = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarExample01">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <a className="navbar-brand me-2" target="_blank" href="https://github.com/div0510/Dataset-Publishing-Web-App">
+                        <li className='nav-item'>
+                        <NavLink className="navbar-brand me-2" to="/datasets">
                             <img
                                 src="../Images/lgo.png"
                                 height={50}
@@ -28,8 +29,11 @@ const HeaderWithNav = () => {
                                 // sizes='cover'
                                 style={{ marginTop: "-1px" }}
                             />
-                        </a>
-
+                        </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className='nav-link' to='/datasets'><h3>Datasets</h3></NavLink>
+                        </li>
                         {/* <li className="nav-item active">
                             <a className="nav-link" aria-current="page" href="#">
                                 Home
@@ -63,7 +67,7 @@ const HeaderWithNav = () => {
                             </button></NavLink>
                         <a
                             className="btn btn-dark px-3"
-                            href="https://github.com/mdbootstrap/mdb-ui-kit"
+                            href="https://github.com/div0510/Dataset-Publishing-Web-App"
                             role="button"
                         >
                             <i className="fab fa-github" />

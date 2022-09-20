@@ -18,7 +18,7 @@ const HeaderAfterLogin = () => {
     }
 
     const logIn = () => {
-        // <Navigate to='/login' replace={true}/>
+        navigate('/login')
     }
 
 

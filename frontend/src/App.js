@@ -11,6 +11,8 @@ import DatasetManager from './components/datasets/DatasetManager';
 import DatasetDetails from './components/datasets/DatasetDetails';
 import AddDataset from './components/datasets/AddDataset';
 import DatumWithAddBtn from './components/screens/DatumWithAddBtn';
+import Authorize from './components/Authorize';
+import AllDatasetWithoutUser from './components/datasets/AllDatasetWithoutUser';
 
 
 function App() {
@@ -22,10 +24,11 @@ function App() {
         <Route element={<Login/>} path="login" />
         <Route element={<Register/>} path="userregister"/>
         <Route element={<Home/>} path='home' />
-        <Route element={<AddDataset/> } path='adddataset'/>
-        <Route element={<AllDataset/>} path='dataset' />
+        <Route element={<Authorize><AddDataset/></Authorize> } path='adddataset'/>
+        <Route element={<Authorize><AllDataset/></Authorize>} path='dataset' />
         <Route element={<DatasetManager/> } path='datasetmanager'/>
-        <Route element={<DatasetDetails/> } path='details/:id'/>
+        <Route element={<Authorize><DatasetDetails/></Authorize> } path='details/:id'/>
+        <Route element={<AllDatasetWithoutUser/>}  path='datasets' />
       </Routes>
     </BrowserRouter>
   );
