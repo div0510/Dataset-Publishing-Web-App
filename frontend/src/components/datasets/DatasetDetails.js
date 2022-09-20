@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import HeaderAfterLogin from '../HeaderAfterLogin';
 const url = 'http://localhost:5005/';
 
+
 const styles = {
     converted: {
         background: [
@@ -15,7 +16,7 @@ const styles = {
         // WebkitTextFillColor: "transparent"
     },
 
-heading: {
+    heading: {
         position: 'absolute',
         top: '50%',
         textAlign: 'center',
@@ -39,34 +40,41 @@ heading: {
 
 
 const DatasetDetails = () => {
-
+    const [count, setCount] = useState(0);
     // const url = "http://localhost:5005/"
     const { id } = useParams();
     const [datasetDetails, setDatasetDetails] = useState('')
 
-    console.log(id);
+    console.log(`${id} + ${count}`);
+    
     // const datasetId= JSON.stringify(id);
     const fetchDetails = async () => {
         const response = await fetch("http://localhost:5005/dataset/details/" + id)
         const details = await response.json();
         console.log(details);
         setDatasetDetails(details);
+        setCount(count+1);
     }
 
-    const showDetails = (datasetDetails) => {
+    const showDetails = () => {
         return (
             <div className="container">
-                <div className="card">
-                    <img src={url + datasetDetails.thumbnail} alt="thumbnail" width="100%" style={styles.image} />
-                    <h2 style={styles.heading}>{datasetDetails.title}</h2></div>
-                <div className="container">
-                    <h3>{datasetDetails.description}</h3>
-                    <h3>Uploaded By: {datasetDetails.createdBy}</h3>
-                    <h3>Uploaded At: {new Date(datasetDetails.createdAt).toLocaleDateString()}</h3>
+                <div className="col-md">
+                    <div className="card">
+                        <img src={url + datasetDetails.thumbnail} alt="thumbnail" width="100%" style={styles.image} />
+                        <h2 style={styles.heading}>{datasetDetails.title}</h2></div>
                 </div>
-                <div className="container">
-                    <h4>File to Download  <i class="fas fa-hand-point-right    "></i>
-                        <a href={url + datasetDetails.file}>.csv file</a></h4>
+                <div className="col-md">
+                    <div className="container">
+                        <h3>{datasetDetails.description}</h3>
+                        <h3>Uploaded By: {datasetDetails.createdBy.username}</h3>
+                        {/* {console.log(datasetDetails)} */}
+                        <h3>Uploaded At: {new Date(datasetDetails.createdAt).toLocaleDateString()}</h3>
+                    </div>
+                    <div className="container">
+                        <h4>File to Download  <i class="fas fa-hand-point-right    "></i>
+                            <a href={url + datasetDetails.file}>.csv file</a></h4>
+                    </div>
                 </div>
             </div>
         )
@@ -79,7 +87,7 @@ const DatasetDetails = () => {
     return (
         <>
             <HeaderAfterLogin />
-            <h1 className='text-center p-3 m-3 fw-bold' style={styles.converted}>Dataset Details</h1>
+            {/* <h1 className='text-center p-3 m-3 fw-bold' style={styles.converted}>Dataset Details</h1> */}
             {showDetails(datasetDetails)}
         </>
     )

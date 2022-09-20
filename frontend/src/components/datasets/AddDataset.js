@@ -11,28 +11,33 @@ const styles = {
     transparent: {
         // filter: "blur(6px)",
         backgroundColor: "rgba(255,255,255,0.15)",
-        color: "white",
+        color: "black",
         zIndex: 2,
+        // borderRadius: '5px'
         
 
     },
     cardbg: {
         // filter: 'drop-shadow(2px 4px 6px black)',
         
-        backgroundColor: 'rgba(57, 61, 56, 0.5)',
-        color: 'white',
+        backgroundColor: 'rgba(97, 255, 255, 0.35)',
+        color: 'black',
         zIndex: 2,
+        borderRadius: '5px'
     },
     textarea: {
-        backgroundColor: 'rgba(57, 61, 56, 0.5)',
+        // backgroundColor: 'rgba(57, 61, 56, 0.75)',
+        backgroundColor: "rgba(255,255,255,0.45)",
         // backgroundColor: "rgba(0,0,0,0.4)",
-        color: "white",
+        color: 'black',
         zIndex: 2,
-        borderRadius: "5px"
+        padding: "5px",
+        borderRadius: "5px",
+        width: '100%'
     },
     backgroundWhite: {
         padding: "10px",
-        backgroundColor: "rgba(0,0,0,0.1)",
+        backgroundColor: "rgba(0,0,0,0.15)",
         zIndex: 2,
         borderRadius: "5px"
     }
@@ -120,7 +125,7 @@ const AddDataset = () => {
         <>
             <HeaderAfterLogin />
             <div className="container d-flex align-items-start  justify-content-center my-lg" style={{
-                backgroundImage: "url('./images/bgadd2.jpg')",
+                backgroundImage: "url('./images/bgadd3.jpg')",
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: 'rgba(255,255,255,0.15)',
                 backgroundSize: '100% 100%',
@@ -128,17 +133,17 @@ const AddDataset = () => {
                 zIndex: -1,
                 // margin: 'auto',
                 padding: '5vh',
-                marginInline: '5vh',
-                marginBlock: '10vh',
+                // marginInline: '5vh',
+                // marginBlock: '10vh',
                 width: '100%',
                 // position: 'absolute',
                 // minWidth: '80vw',
-                minHeight: '70vh',
+                // minHeight: '50vh',
                 // top: 50,
                 // filter: 'blur(1px)',
             }}>
 
-                <h2 className='text-center p-2 mx-5' style={styles.textarea}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
+                <h2 className='text-center p-2 mx-5' style={styles.cardbg}> Publish Your Dataset Here  <i class="fas fa-hand-point-right    "></i></h2>
                 <div className="card p-4 " style={styles.cardbg}>
                     <Formik
                         initialValues={{ title: '', description: '', createdAt: new Date(), createdBy: currentUser._id, url: '', tags: ['covid'] }}
@@ -168,7 +173,7 @@ const AddDataset = () => {
                                         rows="4"
                                         className="form-control rounded text-break"
                                         aria-label="With textarea"
-                                        style={styles.textarea}
+                                        style={styles.cardbg}
                                         id='description'
                                         onChange={handleChange}
                                         value={values.description}
@@ -213,7 +218,7 @@ const AddDataset = () => {
                                     )}
                                 />
 
-                                <label className="form-label  mx-3" htmlFor="customFile" style={styles.transparent}>Upload your .csv file <i class="fas fa-cloud-upload-alt    "></i>
+                                <label className="form-label mt-2 " htmlFor="customFile" style={styles.textarea}>Upload your .csv file  &nbsp; <i class="fas fa-cloud-upload-alt    "></i>
                                 </label><input
                                     type="file"
                                     onChange={uploadFile}
@@ -223,7 +228,7 @@ const AddDataset = () => {
 
                                 />
                                 <br />
-                                <label className="form-label mx-3 m-2" htmlFor="customFile" style={styles.transparent}>Upload Thumbnail <i class="fas fa-file-image    "></i>
+                                <label className="form-label mt-2" htmlFor="customFile" style={styles.textarea}>Upload Thumbnail &nbsp; <i class="fas fa-file-image    "></i>
                                 </label><input type="file"
                                     class="file-upload-input has-multiple"
                                     id="customFile"

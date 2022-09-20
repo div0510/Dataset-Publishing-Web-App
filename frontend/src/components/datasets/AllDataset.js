@@ -52,8 +52,7 @@ const AllDataset = () => {
           className="img-fluid"
           alt='thumbnail'
           style={{padding: '10px', borderRadius: '7px'}}
-          // width= "500px"
-          // height= "500px"
+          
         />
         <a href="#!">
           <div

@@ -15,7 +15,7 @@ router.get('/getall',(req,res)=>{
 
 router.post('/userdatasets',(req,res)=>{
     console.log(req.body._id);
-    datasetModel.find({createdBy: req.body._id})
+    datasetModel.find({createdBy: req.body._id}).populate('createdBy')
     .then((result) => {
         console.log(result)
         res.json(result);
@@ -48,9 +48,9 @@ router.get('/find/:title',(req,res)=>{
 })
 
 router.get('/details/:id',(req,res)=>{
-    console.log(typeof req.params.id).populate('createdBy')
+    console.log(typeof req.params.id)
 
-    datasetModel.findById(req.params.id)
+    datasetModel.findById(req.params.id).populate('createdBy')
     .then((result) => {
         console.log(result)
         // if(result.status === 200)
