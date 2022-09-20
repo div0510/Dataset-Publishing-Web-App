@@ -3,7 +3,7 @@ const router = express.Router();
 const datasetModel = require('../models/datasetModel.js');
 
 router.get('/getall',(req,res)=>{
-    datasetModel.find()
+    datasetModel.find().populate('createdBy')
     .then((result) => {
         console.log(result)
         res.json(result);
@@ -48,7 +48,7 @@ router.get('/find/:title',(req,res)=>{
 })
 
 router.get('/details/:id',(req,res)=>{
-    console.log(typeof req.params.id)
+    console.log(typeof req.params.id).populate('createdBy')
 
     datasetModel.findById(req.params.id)
     .then((result) => {

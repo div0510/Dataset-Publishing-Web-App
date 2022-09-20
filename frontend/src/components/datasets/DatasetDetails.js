@@ -4,7 +4,18 @@ import HeaderAfterLogin from '../HeaderAfterLogin';
 const url = 'http://localhost:5005/';
 
 const styles = {
-    heading: {
+    converted: {
+        background: [
+            "#77BD59",
+            "-webkit-linear-gradient(to right, #77BD59 0%, #21FFCB 33%, #B7DF2D 100%)",
+            "-moz-linear-gradient(to right, #77BD59 0%, #21FFCB 33%, #B7DF2D 100%)",
+            "linear-gradient(to right, #77BD59 0%, #21FFCB 33%, #B7DF2D 100%)"
+        ],
+        // WebkitBackgroundClip: "text",
+        // WebkitTextFillColor: "transparent"
+    },
+
+heading: {
         position: 'absolute',
         top: '50%',
         textAlign: 'center',
@@ -50,6 +61,8 @@ const DatasetDetails = () => {
                     <h2 style={styles.heading}>{datasetDetails.title}</h2></div>
                 <div className="container">
                     <h3>{datasetDetails.description}</h3>
+                    <h3>Uploaded By: {datasetDetails.createdBy}</h3>
+                    <h3>Uploaded At: {new Date(datasetDetails.createdAt).toLocaleDateString()}</h3>
                 </div>
                 <div className="container">
                     <h4>File to Download  <i class="fas fa-hand-point-right    "></i>
@@ -66,10 +79,7 @@ const DatasetDetails = () => {
     return (
         <>
             <HeaderAfterLogin />
-            <h1 className='text-center p-3 m-3 fw-bold' style={{
-                fontSize: '5rem',
-                backgroundColor: "linear-gradient(to right, #87CF90 0%, #78CDFF 33%, #B7DF2D 100%)"
-            }}>Dataset Details</h1>
+            <h1 className='text-center p-3 m-3 fw-bold' style={styles.converted}>Dataset Details</h1>
             {showDetails(datasetDetails)}
         </>
     )
