@@ -76,6 +76,7 @@ const Register = () => {
                                                     id="username"
                                                     value={values.username}
                                                     onChange={handleChange}
+                                                    required
                                                     className="form-control form-control-lg"
                                                 />
                                             </div>
@@ -88,6 +89,7 @@ const Register = () => {
                                                     id="email"
                                                     value={values.email}
                                                     onChange={handleChange}
+                                                    required
                                                     className="form-control form-control-lg"
                                                 />
                                             </div>
@@ -100,6 +102,7 @@ const Register = () => {
                                                     id="password"
                                                     value={values.password}
                                                     onChange={handleChange}
+                                                    required
                                                     className="form-control form-control-lg"
                                                 />
                                             </div>
@@ -110,6 +113,7 @@ const Register = () => {
                                                 <input
                                                     type="password"
                                                     id="form3Example4cdg"
+                                                    required
                                                     className="form-control form-control-lg"
                                                 />
                                             </div>
@@ -118,6 +122,7 @@ const Register = () => {
                                                     className="form-check-input me-2"
                                                     type="checkbox"
                                                     defaultValue=""
+                                                    required
                                                     id="form2Example3cg"
                                                 />
                                                 <label className="form-check-label" htmlFor="form2Example3g">

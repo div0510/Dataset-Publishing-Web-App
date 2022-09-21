@@ -105,6 +105,7 @@ const Login = () => {
                                                                     className="form-control  form-control-lg"
                                                                     value={values.username}
                                                                     onChange={handleChange}
+                                                                    required
                                                                     />
                                                                 
                                                             </div>
@@ -118,6 +119,7 @@ const Login = () => {
                                                                     className="form-control form-control-lg"
                                                                     onChange={handleChange}
                                                                     value={values.password}
+                                                                    required
                                                                 />
                                                             </div>
                                                             <div className="pt-1 mb-4">

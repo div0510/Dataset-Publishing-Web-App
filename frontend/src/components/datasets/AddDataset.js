@@ -162,6 +162,7 @@ const AddDataset = () => {
                                         aria-describedby="addon-wrapping"
                                         style={styles.transparent}
                                         id='title'
+                                        required
                                         onChange={handleChange}
                                         value={values.title}
                                     />
@@ -176,6 +177,7 @@ const AddDataset = () => {
                                         style={styles.cardbg}
                                         id='description'
                                         onChange={handleChange}
+                                        required
                                         value={values.description}
                                     />
                                 </div>
@@ -221,6 +223,7 @@ const AddDataset = () => {
                                 <label className="form-label mt-2 " htmlFor="customFile" style={styles.textarea}>Upload your .csv file  &nbsp; <i class="fas fa-cloud-upload-alt    "></i>
                                 </label><input
                                     type="file"
+                                    required
                                     onChange={uploadFile}
                                     style={styles.transparent}
                                     className="file-upload-input has-multiple"
@@ -232,6 +235,7 @@ const AddDataset = () => {
                                 </label><input type="file"
                                     class="file-upload-input has-multiple"
                                     id="customFile"
+                                    required
                                     onChange={uploadThumbnail}
                                     style={styles.transparent}
                                     data-mdb-file-upload="file-upload"
