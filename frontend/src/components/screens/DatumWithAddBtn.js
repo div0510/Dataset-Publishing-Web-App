@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const DatumWithAddBtn = () => {
     return (
@@ -15,9 +16,9 @@ const DatumWithAddBtn = () => {
                     <div className="text-white p-3">
                         <h1 className="mb-3">DATUM</h1>
                         <h4 className="mb-3">Let Play with It</h4>
-                        <a className="btn btn-outline-light btn-lg" href="#!" role="button">
+                        <NavLink className="btn btn-outline-light btn-lg" to='adddataset' role="button">
                             <i class="fas fa-plus"></i> New Datum
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
             </div>
