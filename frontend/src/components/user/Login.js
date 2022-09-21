@@ -1,8 +1,8 @@
 import React from 'react'
-import { NavLink,  Navigate, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import HeaderWithNav from '../HeaderWithNav'
 import Swal from "sweetalert2";
-import { Formik, replace } from 'formik';
+import { Formik } from 'formik';
 
 const Login = () => {
     const navigate = useNavigate();
