@@ -56,6 +56,7 @@ const DatasetDetails = () => {
         console.log(details);
         setDatasetDetails(details);
         setUpvote(details.upvote);
+        setDownvote(details.downvote);
         setCount(count + 1);
     }
 
@@ -108,31 +109,38 @@ const DatasetDetails = () => {
     }
 
     const upvoteBtn = async () => {
-        console.log('upvote btn hit');
-        
-        console.log('line 113',upvote);
         const response = await fetch('http://localhost:5005/dataset/upvote/'+id,{
-            // mode: 'no-cors',
             method: 'post',
-            body: JSON.stringify({upvoteBtn: upvote}),
+            body: JSON.stringify({upvoteBtn: upvote+1}),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response.json);
+        
         setUpvote(upvote+1);
-        console.log('line 122',upvote);
-
         if(response.status === 200)
         {
             console.log('successs upvote',upvote);
         }
         else{
-            console.log('error upvote');
+            console.log('error in upvote');
         }
     }
-    const downvoteBtn = () => {
+    const downvoteBtn = async () => {
+        const response = await fetch('http://localhost:5005/dataset/downvote/'+id,{
+                method: 'post',
+                body: JSON.stringify({downvoteBtn: downvote-1}),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+        })
+
         setDownvote(downvote - 1);
+        if(response.status === 200){
+            console.log("Downvote"+downvote);
+        }else{
+            console.log("Downvote Error");
+        }
     }
 
     useEffect(() => {
