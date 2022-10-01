@@ -9,7 +9,9 @@ const dataSetSchmea  = new Schema({
     thumbnail: String,
     url: String,
     createdBy:{type: Types.ObjectId,   ref: "users"},
-    createdAt: Date
+    createdAt: Date,
+    upvote: Number,
+    downvote: Number
 })
 
 module.exports = model('datasets',dataSetSchmea);

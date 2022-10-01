@@ -46,11 +46,11 @@ const AllDataset = () => {
     style={{
         backgroundImage:
             'url("../Images/header.jpg")',
-        height: '90vh'
+        height: '80vh'
     }}
 >
-    <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" , height: '90vh' }}>
-        <div className="d-flex justify-content-center align-items-center p-4 h-100">
+    <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" , height: '80vh' }}>
+        <div className="d-flex justify-content-center align-items-center p-4 h-90">
             <div className="text-white p-3  w-100">
                 <h1 className="mb-3" style={{fontSize: '6rem'}}>DATUM</h1>
                 <h4 className="mb-3" style={{fontSize: '2rem'}}>NO DATASETS </h4>

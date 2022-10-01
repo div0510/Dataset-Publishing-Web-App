@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import toast from 'react-hot-toast';
 import HeaderAfterLogin from '../HeaderAfterLogin';
 import { Autocomplete, Chip, TextField } from '@mui/material';
+import Swal from 'sweetalert2';
 // import { NavLink } from 'react-router-dom';
 
 const styles = {
@@ -94,7 +95,7 @@ const AddDataset = () => {
             });
     }
 
-    const datasetSubmit = async (datasetData) => {
+    const datasetSubmit = async (datasetData, {resetForm}) => {
         datasetData.file = selFile;
         datasetData.thumbnail = thumbnail;
         console.log(datasetData);
@@ -108,9 +109,28 @@ const AddDataset = () => {
 
         if (response.status === 200) {
             console.log('Dataset Saved');
+            Swal.fire(
+                {
+                    title:"Success",
+                    icon: "success",
+                    text:"Published",
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'green'
+                }
+            )
+            resetForm();
         }
         else {
             console.log('try again');
+            Swal.fire(
+                {
+                    title:"Something happend to server",
+                    icon: "errpr",
+                    text:"Publish Failed",
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'red'
+                }
+            )
         }
     }
 
@@ -127,7 +147,7 @@ const AddDataset = () => {
             <div className="container d-flex align-items-start  justify-content-center my-lg" style={{
                 backgroundImage: "url('./images/bgadd3.jpg')",
                 backgroundRepeat: 'no-repeat',
-                backgroundColor: 'rgba(255,255,255,0.15)',
+                background: 'rgba(0,0,0,0.15)',
                 backgroundSize: '100% 100%',
                 borderRadius: "5px",
                 zIndex: -1,

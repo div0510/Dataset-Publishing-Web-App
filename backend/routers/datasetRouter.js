@@ -62,6 +62,18 @@ router.get('/details/:id',(req,res)=>{
         res.json(err)
     });
 })
+router.post('/upvote/:id',(req,res)=>{
+    console.log(req.body.upvoteBtn);
+    console.log('id prams', req.params.id);
+    // res.json(req.body)
+    datasetModel.updateOne({_id:req.params.id},{upvote: req.body.upvoteBtn})
+    .then((result) => {
+        console.log(result);
+        res.json(result);
+    }).catch((err) => {
+        res.json(err);
+    });
+})
 
 
 module.exports = router;

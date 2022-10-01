@@ -18,7 +18,7 @@ const styles = {
 
     heading: {
         position: 'absolute',
-        top: '50%',
+        top: '15%',
         textAlign: 'center',
         left: '50%',
         color: 'rgb(255,255,255)',
@@ -31,9 +31,9 @@ const styles = {
         textTransform: 'uppercase',
     },
     image: {
-        filter: 'blur(2px)',
-        border: '3px solid black',
-        height: '60vh',
+        filter: 'blur(0.5px)',
+        // border: '3px solid black',
+        height: '50vh',
         objectFit: 'cover'
     }
 }
@@ -41,43 +41,97 @@ const styles = {
 
 const DatasetDetails = () => {
     const [count, setCount] = useState(0);
+    const [upvote, setUpvote] = useState(0);
+    const [downvote, setDownvote] = useState(0)
     // const url = "http://localhost:5005/"
     const { id } = useParams();
     const [datasetDetails, setDatasetDetails] = useState('')
 
     console.log(`${id} + ${count}`);
-    
+
     // const datasetId= JSON.stringify(id);
     const fetchDetails = async () => {
         const response = await fetch("http://localhost:5005/dataset/details/" + id)
         const details = await response.json();
         console.log(details);
         setDatasetDetails(details);
-        setCount(count+1);
+        setUpvote(details.upvote);
+        setCount(count + 1);
     }
 
     const showDetails = () => {
         return (
-            <div className="container">
+            <div className="container py-2">
                 <div className="col-md">
                     <div className="card">
                         <img src={url + datasetDetails.thumbnail} alt="thumbnail" width="100%" style={styles.image} />
-                        <h2 style={styles.heading}>{datasetDetails.title}</h2></div>
-                </div>
-                <div className="col-md">
-                    <div className="container">
-                        <h3>{datasetDetails.description}</h3>
-                        <h3>Uploaded By: {datasetDetails.createdBy.username}</h3>
-                        {/* {console.log(datasetDetails)} */}
-                        <h3>Uploaded At: {new Date(datasetDetails.createdAt).toLocaleDateString()}</h3>
-                    </div>
-                    <div className="container">
-                        <h4>File to Download  <i class="fas fa-hand-point-right    "></i>
-                            <a href={url + datasetDetails.file}>.csv file</a></h4>
+                        <h2 style={styles.heading}>{datasetDetails.title}</h2>
+
+                        <div className="col-md  m-4 ">
+                            <div className="container p-3">
+                                <h4>Description:-&nbsp;{datasetDetails.description}</h4>
+                                {/* <p className='m-0'>Uploaded By: {datasetDetails.createdBy.username}</p> */}
+                                {/* {console.log(datasetDetails)} */}
+                                <p>Uploaded At: {new Date(datasetDetails.createdAt).toLocaleDateString()}</p>
+                                <div className="container d-flex m-0 justify-content-sm-evenly" style={{width:'35%'}}>
+                                    <a
+                                        className="btn text-white"
+                                        style={{ backgroundColor: "#159a3f" }}
+                                        href="#!"
+                                        role="button"
+                                        onClick={upvoteBtn}
+                                    >
+                                        <i className="fas fa-angle-double-up fs-6"></i>
+                                        <span className="badge bg-danger ms-3 fs-6">{upvote}</span>
+                                    </a>
+                                    <a
+                                        className="btn text-white bg-danger"
+                                        
+                                        href="#!"
+                                        role="button"
+                                        onClick={downvoteBtn}
+                                    >
+                                        <i className="fas fa-angle-double-down fs-6"></i>
+                                        <span style={{ backgroundColor: "#159a3f" }} className="badge  ms-3 fs-6">{downvote}</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="container d-flex p-3">
+                                <h5>File to Download  <i class="fas fa-hand-point-right    "></i>
+                                    <a href={url + datasetDetails.file}>&nbsp; &nbsp;Click here</a></h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         )
+    }
+
+    const upvoteBtn = async () => {
+        console.log('upvote btn hit');
+        
+        console.log('line 113',upvote);
+        const response = await fetch('http://localhost:5005/dataset/upvote/'+id,{
+            // mode: 'no-cors',
+            method: 'post',
+            body: JSON.stringify({upvoteBtn: upvote}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        setUpvote(upvote + 1);
+        console.log('line 122',upvote);
+
+        if(response.status === 200)
+        {
+            console.log('successs upvote',upvote);
+        }
+        else{
+            console.log('error upvote');
+        }
+    }
+    const downvoteBtn = () => {
+        setDownvote(downvote - 1);
     }
 
     useEffect(() => {
