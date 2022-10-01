@@ -98,6 +98,8 @@ const AddDataset = () => {
     const datasetSubmit = async (datasetData, {resetForm}) => {
         datasetData.file = selFile;
         datasetData.thumbnail = thumbnail;
+        datasetData.upvote = 0;
+        datasetData.downvote=0;
         console.log(datasetData);
         const response = await fetch('http://localhost:5005/dataset/add', {
             method: 'post',
@@ -147,7 +149,7 @@ const AddDataset = () => {
             <div className="container d-flex align-items-start  justify-content-center my-lg" style={{
                 backgroundImage: "url('./images/bgadd3.jpg')",
                 backgroundRepeat: 'no-repeat',
-                background: 'rgba(0,0,0,0.15)',
+                backgroundColor: 'rgb(73 210 205 / 67%) !important',
                 backgroundSize: '100% 100%',
                 borderRadius: "5px",
                 zIndex: -1,

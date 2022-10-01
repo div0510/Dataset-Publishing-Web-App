@@ -71,7 +71,7 @@ const AllDataset = () => {
           src={url+data.thumbnail}
           className="img-fluid"
           alt='thumbnail'
-          style={{padding: '10px', borderRadius: '7px'}}
+          style={{padding: '10px', borderRadius: '7px' , }}
           
         />
         <a href="#!">

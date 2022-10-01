@@ -119,7 +119,8 @@ const DatasetDetails = () => {
                 'Content-Type': 'application/json'
             }
         })
-        setUpvote(upvote + 1);
+        console.log(response.json);
+        setUpvote(upvote+1);
         console.log('line 122',upvote);
 
         if(response.status === 200)
